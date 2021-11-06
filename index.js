@@ -12,7 +12,7 @@ const { PORT, corsOptions, JWT } = require('./config')
 const app = express()
 const database = new Database()
 
-const server = require('http').createServer(app);
+const server = require('https').createServer(app);
 const io = require('socket.io')(server, {
     cors: corsOptions,
     allowEIO3: true
