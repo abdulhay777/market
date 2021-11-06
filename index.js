@@ -33,18 +33,18 @@ database.connect('mongodb+srv://bruce:HX!HetN67jV@cluster0.zcm24.mongodb.net/one
     app.set('view engine', 'ejs')
 
     app.get('/login', (req, res) => {
-        // if (!req.headers.cookie) {
-        //     res.redirect('/')
-        //     return
-        // }
+        if (!req.headers.cookie) {
+            res.redirect('/')
+            return
+        }
         res.render('login')
     })
 
     app.get('/register', (req, res) => {
-        // if (!req.headers.cookie) {
-        //     res.redirect('/')
-        //     return
-        // }
+        if (!req.headers.cookie) {
+            res.redirect('/')
+            return
+        }
         res.render('register')
     })
 
