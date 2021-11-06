@@ -5,6 +5,10 @@ jQuery(function($) {
         return re.test(String(email).toLowerCase());
     }
 
+    if (document.cookie){
+        window.location.href = '/'
+    }
+
     $('.login button').on('click', async function () {
 
         let email = $('.login input[type="email"]')
