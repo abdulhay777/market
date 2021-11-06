@@ -21,8 +21,9 @@ const io = require('socket.io')(server, {
 const Markets = database.model('markets')
 const Users = database.model('users')
 const Products = database.model('products')
-
-database.connect('mongodb+srv://bruce:HX!HetN67jV@cluster0.zcm24.mongodb.net/market', function () {
+// mongodb+srv://bruce:HX!HetN67jV@cluster0.zcm24.mongodb.net/market
+// mongodb://localhost:27017/project
+database.connect('mongodb+srv://bruce:HX!HetN67jV@cluster0.zcm24.mongodb.net/onedb', function () {
 
     app.use(bodyParser.urlencoded({extended: true}))
     app.use(bodyParser.json())
@@ -32,7 +33,7 @@ database.connect('mongodb+srv://bruce:HX!HetN67jV@cluster0.zcm24.mongodb.net/mar
     app.set('view engine', 'ejs')
 
     app.get('/login', (req, res) => {
-        if (req.headers.cookie) {
+        if (!req.headers.cookie) {
             res.redirect('/')
             return
         }
@@ -40,7 +41,7 @@ database.connect('mongodb+srv://bruce:HX!HetN67jV@cluster0.zcm24.mongodb.net/mar
     })
 
     app.get('/register', (req, res) => {
-        if (req.headers.cookie) {
+        if (!req.headers.cookie) {
             res.redirect('/')
             return
         }
@@ -57,7 +58,7 @@ database.connect('mongodb+srv://bruce:HX!HetN67jV@cluster0.zcm24.mongodb.net/mar
         const token = TokenParse(req.headers.cookie)
 
         const user = await Users.findOne({_id: token.id}, {_id: 1}).lean()
-
+        // const user = '';
         if (!user) {
             res.redirect('/login')
             return
