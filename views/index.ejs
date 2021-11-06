@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- /============= Description Site =============/ -->
+    <meta property="og:type" content="site">
+    <meta property="og:site_name" content="">
+    <meta property="og:title" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <!-- -------------------------------------------- -->
+    <meta name="description" content="Описание">
+    <meta name="keywords" content="Клучивые слова">
+    <!-- -------------------------------------------- -->
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <!-- /============= Description Site =============/ -->
+
+    <!-- /=================== CSS ====================/ -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+    <link rel="stylesheet" href="/public/css/main.css">
+    <!-- /=================== CSS ====================/ -->
+
+    <title>Home</title>
+</head>
+
+<body>
+
+    <!-- /=============/ Start /-->
+    <div class="container index">
+
+        <!-- /================ Main ================/ -->
+        <section class="main">
+            
+            <div class="main__market">
+                <a href="/logout" class="logout">Log out</a>
+                <ul>
+                    <% if(market.length > 0) { %>
+                        <% market.forEach(function (e) { %>
+                        <li data-id="<%= e._id %>">
+                            <a href="/market/<%= e._id %>">
+                                <%= e.market_name %>
+                            </a>
+                        </li>
+                        <% }) %>
+                    <% } else { %>
+                        <li class="not">No market</li>
+                    <% } %>
+                </ul>
+                <button class="green" data-fancybox data-src="#add-market">Add</button>
+            </div>
+
+        </section>
+        <!-- /================ Main ================/ -->
+
+        <!-- Modal -->
+        <div id="add-market" style="display: none;">
+            <input type="text" placeholder="Name" style="width: 100%">
+            <button class="green">Add</button>
+        </div>
+
+    </div>
+    <!-- /=============/ End /-->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/public/js/main.js"></script>
+
+</body>
+
+</html>
